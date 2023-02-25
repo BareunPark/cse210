@@ -55,7 +55,7 @@ class AppControl
             Console.WriteLine("Select an option: ");
             Console.WriteLine("1. Start Breathing Activity");
             Console.WriteLine("2. Start Reflecting Activity");
-            Console.WriteLine("3. Start Listening Activity");
+            Console.WriteLine("3. Start Listing Activity");
             Console.WriteLine("4. Quit");
             // activity.WaitForKey();
 
