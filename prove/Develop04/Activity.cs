@@ -22,6 +22,7 @@ public class Activity
         Console.WriteLine($"Welcome to {_activityName}.");
         Console.WriteLine("How long, in seconds, would you like for your session?");
         Console.Write("(This activity should be more than 10 seconds)");
+        
         activityDuration = Convert.ToInt32(Console.ReadLine());
         HoldAnimation(10);
 
