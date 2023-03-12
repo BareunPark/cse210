@@ -5,6 +5,7 @@ class AppControl
     
     private SimpleGoal simpleGoal = new SimpleGoal( "", "", 0 );
     private EternalGoal eternalGoal = new EternalGoal( "", "", 0 );
+    private ChecklistGoal checklistGoal = new ChecklistGoal( "", "", 0, 0, 0);
     
     public void Run()
     {   
@@ -90,14 +91,14 @@ class AppControl
             switch(goalOption)
             {
                 case "1":
-                    simpleGoal.CreateGoal();
+                    simpleGoal.CreateSimpleGoal();
                     break;
                     
                 case "2":
-                    eternalGoal.CreateGoal();
+                    eternalGoal.CreateEternalGoal();
                     break;
                 case "3":
-                    Console.WriteLine("Checklist Goal");
+                    checklistGoal.CreateChecklistGoal();
                     break;
                 case "4":
                     break;
@@ -117,7 +118,8 @@ class AppControl
         using (StreamWriter sw = File.AppendText(filename))
         {
             sw.WriteLine(goalList.TotalPoint);
-            foreach (var goal in goalList.Goals)
+            // List<Goal> goalsCopy = new List<Goal>(goalList._goals);
+            foreach (var goal in goalList._goals)
             {
                 string checkbox = goal.IsAchieved ? "true" : "false";
                 sw.WriteLine($"{goal.Name}, {goal.Description}, {goal.Points}, {checkbox}");
@@ -131,7 +133,7 @@ class AppControl
 
     public void LoadFromFile(string filename)
     {
-    goalList.Goals.Clear();
+    goalList._goals.Clear();
     using (StreamReader sr = new StreamReader(filename))
     {
         string line;
@@ -154,7 +156,7 @@ class AppControl
                 
                 goal.IsAchieved = IsAchieved;
                 
-                goalList.Goals.Add(goal);
+                goalList._goals.Add(goal);
             }
             lineCount++;
         }
