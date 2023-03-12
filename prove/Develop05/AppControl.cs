@@ -3,7 +3,7 @@ class AppControl
     
     private Goal goalList = new Goal( "", "", 0 );
     
-    private SimpleGoal simpleGoal = new SimpleGoal( "", "", 0 );
+    SimpleGoal simpleGoal = new SimpleGoal( "", "", 0 );
     private EternalGoal eternalGoal = new EternalGoal( "", "", 0 );
     private ChecklistGoal checklistGoal = new ChecklistGoal( "", "", 0, 0, 0);
     
@@ -91,7 +91,7 @@ class AppControl
             switch(goalOption)
             {
                 case "1":
-                    simpleGoal.CreateSimpleGoal();
+                    SimpleGoal.CreateSimpleGoal(goalList);
                     break;
                     
                 case "2":

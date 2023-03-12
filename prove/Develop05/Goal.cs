@@ -1,13 +1,11 @@
 public class Goal
 {   
-    
     public string Name { get; set; }
     public string Description { get; set; }
     public int Points { get; set; }
     public List<Goal> _goals = new List<Goal>();
-
     public bool IsAchieved { get; set; } = false;
-    public int TotalPoint = 0;
+    public int TotalPoint { get; set; } = 0;
 
     public Goal(string name, string description, int points, bool isAchieved = false)
     {
@@ -17,22 +15,7 @@ public class Goal
         IsAchieved = isAchieved;
 
         _goals.Add(this);
-        
     }
-
-  
-
-    
-
-    
-    // public virtual Goal CreateGoal()
-    // {
-        
-        
-         
-    // }
-    
-
 
     public void ListGoals()
     {
@@ -49,7 +32,6 @@ public class Goal
             Console.WriteLine($"{i + 1}. {checkbox} {_goals[i].Name} - {_goals[i].Description} - {_goals[i].Points} points");
         }
     }
-    
 
     public virtual void RecordEvent()
     {
@@ -94,10 +76,5 @@ public class Goal
         Console.WriteLine($"You have earned {selectedGoal.Points} points for {selectedGoal.Name}.");
         _goals[choice - 1].IsAchieved = true;
         TotalPoint += selectedGoal.Points;
-        
     }
-
-    
-   
 }
-
