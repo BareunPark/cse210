@@ -1,9 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop05 World!");
+        AppControl appControl = new AppControl();
+        appControl.Run();
     }
 }
+
+
