@@ -1,103 +1,70 @@
-public class Goal
-{   
+public abstract class Goal
+{
+    bool _isComplete;
+    string _name;
+    string _description;
+    int _point;
     
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public int Points { get; set; }
-    public List<Goal> _goals = new List<Goal>();
-
-    public bool IsAchieved { get; set; } = false;
-    public int TotalPoint = 0;
-
-    public Goal(string name, string description, int points, bool isAchieved = false)
+    int _totalPoint;
+    public Goal()
     {
-        Name = name;
-        Description = description;
-        Points = points;
-        IsAchieved = isAchieved;
 
-        _goals.Add(this);
-        
     }
 
-  
-
-    
-
-    
-    // public virtual Goal CreateGoal()
-    // {
-        
-        
-         
-    // }
-    
-
-
-    public void ListGoals()
+    public Goal(bool isComplete, string name, string description, int point)
     {
-        if (_goals.Count == 0)
-        {
-            Console.WriteLine("You have no goals.");
-            return;
-        }
-
-        Console.WriteLine("Your current goals are: ");
-        for (int i = 0; i < _goals.Count; i ++)
-        {
-            string checkbox = _goals[i].IsAchieved ? "[X]" : "[ ]";
-            Console.WriteLine($"{i + 1}. {checkbox} {_goals[i].Name} - {_goals[i].Description} - {_goals[i].Points} points");
-        }
+        _isComplete = isComplete;
+        _name = name;
+        _description = description;
+        _point = point;
+        // _totalPoint = totalPoint;
     }
-    
 
-    public virtual void RecordEvent()
+    public string GetName()
     {
-        Console.WriteLine("Select a goal to update its progress:");
-        for (int i = 0; i < _goals.Count; i++)
-        {
-            string checkbox = _goals[i].IsAchieved ? "[X]" : "[ ]";
-            Console.WriteLine($"{i + 1}. {_goals[i].Name} - {_goals[i].Description} - {_goals[i].Points} points");
-        }
+        return _name;
+    }
+    public void SetName(string name)
+    {
+        _name = name;
+    }
 
-        int choice = -1;
-        while (choice < 1 || choice > _goals.Count)
-        {
-            Console.Write("Enter the number of the goal (or 'quit' to exit): ");
-            string input = Console.ReadLine().ToLower();
-            if (input == "quit")
-            {
-                return;
-            }
-            if (!int.TryParse(input, out choice))
-            {
-                Console.WriteLine("Invalid choice. Please enter a number.");
-                continue;
-            }
-            if (choice < 1 || choice > _goals.Count)
-            {
-                Console.WriteLine($"Invalid choice. Please enter a number between 1 and {_goals.Count}.");
-                continue;
-            }
-            if (_goals[choice - 1].IsAchieved)
-            {
-                Console.WriteLine("This goal is already achieved. Please select a different goal.");
-                choice = -1;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        Goal selectedGoal = _goals[choice - 1];
-        Console.WriteLine($"You have earned {selectedGoal.Points} points for {selectedGoal.Name}.");
-        _goals[choice - 1].IsAchieved = true;
-        TotalPoint += selectedGoal.Points;
-        
+    public string GetDescription()
+    {
+        return _description;
+    }
+    public void SetDescription(string description)
+    {
+        _description = description;
+    }
+    public int GetPoint()
+    {
+        return _point;
     }
 
     
-   
+    public void SetPoint(int point)
+    {
+        _point = point;
+    }
+    public bool GetComplete()
+    {
+        return _isComplete;
+    }
+    public void SetComplete(bool X)
+    {
+        _isComplete = X;
+    }
+    public int GetTotalPoint()
+    {
+        return _totalPoint;
+    }
+    public void SetTotalPoint(int point)
+    {
+        _totalPoint = _totalPoint + point;
+    }
+    
+    public abstract void CreateGoal();
+    public abstract void RecordEvent();
+    public abstract string PrintProgress();
 }
-
