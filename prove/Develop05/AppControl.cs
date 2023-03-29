@@ -50,7 +50,6 @@ class AppControl
                     RecordEvent();
                     break;
                 case "6":
-                    Console.WriteLine("6");
                     break;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");

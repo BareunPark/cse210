@@ -1,9 +1,16 @@
 using System;
 
-class Program
+namespace EventPlanning
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello Foundation3 World!");
+        static void Main(string[] args)
+        {
+            AppControl appControl = new AppControl();
+            appControl.Run();            
+
+        }            
+            
     }
+
 }
