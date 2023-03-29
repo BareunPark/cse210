@@ -1,7 +1,8 @@
 namespace EventPlanning
 {
     public class AppControl
-    {
+    {   
+        private List<Event> events = new List<Event>();
         public void Run()
         {
 
@@ -14,6 +15,7 @@ namespace EventPlanning
                 "Dr. Jane Doe",
                 50
             );
+            events.Add(lecture);
 
             ReceptionEvent reception = new ReceptionEvent(
                 "Annual Charity Gala",
@@ -23,6 +25,7 @@ namespace EventPlanning
                 new Address("456 Broadway", "New York", "NY", "10013"),
                 "rsvp@example.com"
             );
+            events.Add(reception);
 
             OutdoorGatheringEvent outdoorGathering = new OutdoorGatheringEvent(
                 "Summer Music Festival",
@@ -32,12 +35,13 @@ namespace EventPlanning
                 new Address("789 Oak St", "Seattle", "WA", "98101"),
                 "Sunny with a high of 75 degrees"
             );
+            events.Add(outdoorGathering);
 
 
             string option = "";
             while(option != "4")
             {
-                Console.WriteLine("Option available: ");
+                Console.WriteLine("Menu: ");
                 Console.WriteLine("1. Lecture Event");
                 Console.WriteLine("2. Reception Event");
                 Console.WriteLine("3. Outdoor Event");
@@ -57,142 +61,14 @@ namespace EventPlanning
                 switch (option)
                 {
                     case "1":
-                        while(option != "4")
-                        {
-                            Console.WriteLine("Display Option: ");
-                            Console.WriteLine("1. Standard Details");
-                            Console.WriteLine("2. Full Details");
-                            Console.WriteLine("3. Short description");
-                            Console.WriteLine("4. Quit");
-                            try
-                            {
-                                option = Console.ReadLine();
-                            }
-                            catch (FormatException)
-                            {
-                                Console.WriteLine("Invalid input. Please enter a number.");
-                                Console.ReadKey();
-                                continue;
-                            }
-
-                            switch(option)
-                            {
-                                case "1":
-                                    Console.Clear();
-                                    Console.WriteLine(lecture.GetStandardDetails());
-                                    Console.ReadKey();
-                                    break;
-                                case "2":
-                                    Console.Clear();
-                                    Console.WriteLine(lecture.GetFullDetails());
-                                    Console.ReadKey();
-                                    break;
-                                case "3":
-                                    Console.Clear();
-                                    Console.WriteLine(lecture.GetShortDescription());
-                                    Console.ReadKey();
-                                    break;
-                                case "4":
-                                    break;
-                                default:
-                                    Console.WriteLine("Invalid option. Please try again.");
-                                    Console.ReadKey();
-                                    continue;
-                            }
-
-                        }
+                        DisplayEventDetails(events[0]);
                         break;
                     case "2":
-                        while(option != "4")
-                        {
-                            Console.WriteLine("Display Option: ");
-                            Console.WriteLine("1. Standard Details");
-                            Console.WriteLine("2. Full Details");
-                            Console.WriteLine("3. Short description");
-                            Console.WriteLine("4. Quit");
-                            try
-                            {
-                                option = Console.ReadLine();
-                            }
-                            catch (FormatException)
-                            {
-                                Console.WriteLine("Invalid input. Please enter a number.");
-                                Console.ReadKey();
-                                continue;
-                            }
-
-                            switch(option)
-                            {
-                                case "1":
-                                    Console.Clear();
-                                    Console.WriteLine(reception.GetStandardDetails());
-                                    Console.ReadKey();
-                                    break;
-                                case "2":
-                                    Console.Clear();
-                                    Console.WriteLine(reception.GetFullDetails());
-                                    Console.ReadKey();
-                                    break;
-                                case "3":
-                                    Console.Clear();
-                                    Console.WriteLine(reception.GetShortDescription());
-                                    Console.ReadKey();
-                                    break;
-                                case "4":
-                                    break;
-                                default:
-                                    Console.WriteLine("Invalid option. Please try again.");
-                                    Console.ReadKey();
-                                    continue;
-                            }
-
-                        }
+                        DisplayEventDetails(events[1]);
                         break;
                     case "3":
-                        while(option != "4")
-                        {
-                            Console.WriteLine("Display Option: ");
-                            Console.WriteLine("1. Standard Details");
-                            Console.WriteLine("2. Full Details");
-                            Console.WriteLine("3. Short description");
-                            Console.WriteLine("4. Quit");
-                            try
-                            {
-                                option = Console.ReadLine();
-                            }
-                            catch (FormatException)
-                            {
-                                Console.WriteLine("Invalid input. Please enter a number.");
-                                Console.ReadKey();
-                                continue;
-                            }
+                        DisplayEventDetails(events[2]);
 
-                            switch(option)
-                            {
-                                case "1":
-                                    Console.Clear();
-                                    Console.WriteLine(outdoorGathering.GetStandardDetails());
-                                    Console.ReadKey();
-                                    break;
-                                case "2":
-                                    Console.Clear();
-                                    Console.WriteLine(outdoorGathering.GetFullDetails());
-                                    Console.ReadKey();
-                                    break;
-                                case "3":
-                                    Console.Clear();
-                                    Console.WriteLine(outdoorGathering.GetShortDescription());
-                                    Console.ReadKey();
-                                    break;
-                                case "4":
-                                    break;
-                                default:
-                                    Console.WriteLine("Invalid option. Please try again.");
-                                    Console.ReadKey();
-                                    continue;
-                            }
-
-                        }
                         break;
                     case "4":
                         break;
@@ -202,6 +78,49 @@ namespace EventPlanning
                         continue;
                 }
             }   
+        }
+
+        private void DisplayEventDetails(Event e)
+        {
+            string option = "";
+            while (option != "4")
+            {
+                Console.Clear();
+                Console.WriteLine("Display Option: ");
+                Console.WriteLine("1. Standard Details");
+                Console.WriteLine("2. Full Details");
+                Console.WriteLine("3. Short description");
+                Console.WriteLine("4. Back to Menu");
+
+                option = Console.ReadLine();
+                switch (option)
+                {
+                    case "1":
+                        Console.Clear();
+                        Console.WriteLine("<<Standard Details>>");
+                        Console.WriteLine(e.GetStandardDetails());
+                        Console.ReadKey();
+                        break;
+                    case "2":
+                        Console.Clear();
+                        Console.WriteLine("<<Full Details>>");
+                        Console.WriteLine(e.GetFullDetails());
+                        Console.ReadKey();
+                        break;
+                    case "3":
+                        Console.Clear();
+                        Console.WriteLine("<<Short Description>>");
+                        Console.WriteLine(e.GetShortDescription());
+                        Console.ReadKey();
+                        break;
+                    case "4":
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        Console.ReadKey();
+                        continue;
+                }
+            }
         }
     }
 }
