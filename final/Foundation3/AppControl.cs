@@ -3,9 +3,8 @@ namespace EventPlanning
     public class AppControl
     {   
         private List<Event> events = new List<Event>();
-        public void Run()
+        public void EventData()
         {
-
             LectureEvent lecture = new LectureEvent(
                 "The Science of AI",
                 "Learn about the latest advancements in artificial intelligence",
@@ -36,8 +35,11 @@ namespace EventPlanning
                 "Sunny with a high of 75 degrees"
             );
             events.Add(outdoorGathering);
-
-
+        }
+        
+        public void Run()
+        {
+            EventData();
             string option = "";
             while(option != "4")
             {
